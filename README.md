@@ -2,6 +2,25 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# How to use this project?
+
+### Step 1
+You need to be sure that you have npm or yarn.
+
+To install dependencies run  `yarn install` or `npm install`
+
+### Step 2
+
+Clone this repository with command `git clone git@github.com:Allochka11/movie-project.git` in terminal or [download here](https://github.com/Allochka11/movie-project-new/archive/refs/heads/master.zip "The archive of Movie-Project").
+
+Passphrase is *Alla* (EN)
+
+### Step 3
+
+Install bootstrap, sass and axios
+
+`npm install bootstrap, sass, axios`
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -11,7 +11,7 @@ To install dependencies run  `yarn install` or `npm install`
 
 ### Step 2
 
-Clone this repository with command `git clone git@github.com:Allochka11/movie-project.git` in terminal or [download here](https://github.com/Allochka11/movie-project-new/archive/refs/heads/master.zip "The archive of Movie-Project").
+Clone this repository with command `git clone git@github.com:Allochka11/movie-project.git` in terminal or [download here](https://github.com/Allochka11/movie_search/archive/refs/heads/master.zip "The archive of Movie-Project").
 
 Passphrase is *Alla* (EN)
 

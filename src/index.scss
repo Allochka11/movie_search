@@ -6,11 +6,45 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #282c34;
+  background-color: #212529;
   color: #fff;
+}
+
+input[type="text"] {
+  color: #fff !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.dark-theme, .dark-theme:focus {
+  background-color: #212529;
+}
+
+.btn-color {
+  background-color: #1cb8d8;
+}
+
+.card_border {
+  background-color: inherit;
+  border: 1px solid white;
+
+}
+.radius {
+  border-radius: 5px;
+}
+
+
+.card_width {
+  width: 300px;
+}
+
+.button_x {
+  font-weight: 900;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  float: right;
 }

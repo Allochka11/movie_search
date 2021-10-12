@@ -7,27 +7,28 @@ import {About} from "./pages/About";
 import {Movie} from "./pages/Movie";
 import {Alert} from "./components/Alert";
 import {AlertState} from "./context/alert/alertState";
+import {MovieState} from "./context/movie/movieState";
 
 
 function App() {
     return (
-        <AlertState>
-            <BrowserRouter>
-                <Header/>
-                <div className="container pt-4">
-                    <Alert alert={{text: 'Test'}}/>
-                    <Switch>
-                        <Route path="/" exact component={Home}/>
-                        <Route path="/about" exact component={About}/>
-                        <Route path="/movie/:name" exact component={Movie}/>
-                    </Switch>
+        <MovieState>
+            <AlertState>
+                <BrowserRouter>
+                    <Header/>
+                    <div className="container pt-4">
+                        <Alert alert={{text: 'Test'}}/>
+                        <Switch>
+                            <Route path="/" exact component={Home}/>
+                            <Route path="/about" exact component={About}/>
+                            <Route path="/movie/:name" exact component={Movie}/>
+                        </Switch>
 
-                </div>
+                    </div>
 
-            </BrowserRouter>
-        </AlertState>
-
-
+                </BrowserRouter>
+            </AlertState>
+        </MovieState>
     );
 }
 

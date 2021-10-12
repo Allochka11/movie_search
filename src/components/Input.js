@@ -1,16 +1,18 @@
 import React, {Fragment, useContext, useState} from 'react';
 import {AlertContext} from "../context/alert/alertContext";
+import {MovieContext} from "../context/movie/movieContext";
 
 export const Input = () => {
     const [value,setValue] = useState(' ');
     const {show} = useContext(AlertContext);
+    const movie = useContext(MovieContext);
 
     const onSubmit = (event) => {
         if(event.key !== 'Enter') {
             return
         }
         if (value.trim()) {
-            console.log('Make request with: ' + value.trim())
+            movie.searchMovies(value.trim())
         } else {
             show('Write a movie title', 'danger')
         }

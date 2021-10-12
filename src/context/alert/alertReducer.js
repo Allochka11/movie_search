@@ -13,5 +13,5 @@ export const alertReducer = (state, action) => {
     const handler = handlers[action.type] || handlers.DEFAULT;
     console.log('state', state)
     console.log('action', action)
-    return handler(state, action)
+    return handler(state, action);
 }

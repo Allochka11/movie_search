@@ -1,53 +1,120 @@
 import React, {useReducer} from "react";
 import {movieReducer} from "./movieReducer";
 import {MovieContext} from "./movieContext";
-import {CLEAR_MOVIES, GET_MOVIE, GET_REPOS, SEARCH_MOVIES, SET_LOADING} from "../types";
+import {CLEAR_LAST_MOVIE, CLEAR_MOVIES, GET_MOVIE, GET_VIDEO, SEARCH_MOVIES, SET_LOADING} from "../types";
 import axios from "axios";
 
+
 const KEY = process.env.REACT_APP_API_KEY;
+const SEARCH = 'https://api.themoviedb.org/3/';
+
 
 export const MovieState = ({children}) => {
-
 
     const initialState = {
         movie: {},
         movies: [],
-        loading: false,
-        repos: []
+        movieTrailer: [],
+        loading: true
     }
+
     const [state, dispatch] = useReducer(movieReducer, initialState);
 
-    const searchMovies = async value => {
-        setLoading();
-        const response = await axios.get(
-            `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${value}&language=en-US`
-        )
-        //... request
+    // console.log(initialState)
+    const setLoading = (loading) => {
         dispatch({
-            type: SEARCH_MOVIES,
-            payload: response.data.results
+            type: SET_LOADING,
+            loading
         })
     }
 
-    const getMovie = async name => {
-        setLoading();
-        const response = await axios.get(
-            `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${name}`
-        )
+    const clearMovie = () => {
         dispatch({
-            type: GET_MOVIE,
-            payload: response.data
+            type: CLEAR_LAST_MOVIE
         })
     }
 
-    // const getRepos = async name => {
-    //     setLoading();
-    //     //... request
-    //     dispatch({
-    //         type: GET_REPOS,
-    //         payload: []
-    //     })
-    // }
+    const searchMovies = (value) => {
+
+        setLoading(true);
+
+        axios.get(
+            SEARCH + `search/movie?api_key=${KEY}&query=${value}&language=en-US`
+        ).then((response)=> {
+            return new Promise((resolve) => {
+                dispatch({
+                    type: SEARCH_MOVIES,
+                    payload: response.data,
+                });
+                setTimeout(() => {
+                    resolve();
+                }, 500)
+            });
+        }).then(() => {
+            setLoading(false);
+        })
+
+
+        // console.log(dispatch)
+        // setLoading(true)
+
+    }
+    // console.log(initialState)
+    // setLoading(true)
+
+
+    const getMovie = id => {
+        setLoading(true);
+
+        axios.get(
+            SEARCH + `movie/${id}?api_key=${KEY}&language=en-US`
+        ).then(response => {
+
+            return new Promise(resolve => {
+                dispatch({
+                    type: GET_MOVIE,
+                    payload: response.data
+                })
+
+                setTimeout(() => {
+
+                    resolve()
+                }, 1000);
+            })
+        }).then(() => setLoading(false));
+    }
+
+    const getVideo = id => {
+        console.log('get id',id)
+
+        setLoading(true);
+        axios.get(
+            SEARCH + `movie/${id}/videos?api_key=${KEY}&language=en-US`
+        ).then(response => {
+
+            console.log('ответ',response.data.results)
+
+            const videoKeys = [];
+            response.data.results.map((video,index)=> {
+                videoKeys.push(video.key)
+            })
+
+            // console.log('videoKeys',videoKeys)
+
+            return new Promise(resolve => {
+                dispatch({
+                    type: GET_VIDEO,
+                    payload: videoKeys
+                })
+                setTimeout(() => {
+                    resolve()
+                }, 1000);
+            })
+        }).then(() => setLoading(false));
+    }
+
+
+
 
     const clearSearch = () => {
         dispatch({
@@ -55,18 +122,12 @@ export const MovieState = ({children}) => {
         })
     }
 
-    const setLoading = () => {
-        dispatch({
-            type: SET_LOADING,
-        })
-    }
 
-    const {movie, movies, repos, loading} = state;
-
+    const {movie, movies, loading, movieTrailer} = state;
 
     return (
         <MovieContext.Provider value={{
-            searchMovies, getMovie, setLoading, clearSearch, movie, movies, repos, loading
+            searchMovies, getMovie, getVideo, setLoading, clearSearch, clearMovie, movie, movies, loading, movieTrailer
         }}>
             {children}
         </MovieContext.Provider>

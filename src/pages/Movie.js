@@ -1,9 +1,96 @@
-import React from 'react';
+import React, {Fragment, useContext, useLayoutEffect} from 'react';
+import {MovieContext} from "../context/movie/movieContext";
+import poster from "../no_poster.jpg";
+import {Link} from "react-router-dom";
+import {Loading} from "../components/Loading";
+import {Trailer} from "../components/Trailer";
 
-export const Movie = () => {
+const IMG_API = 'http://image.tmdb.org/t/p/original';
+export const Movie = ({match}) => {
+    // debugger;
+    const {getMovie, movie, loading} = useContext(MovieContext);
+    const idMovie = match.params.id;
+
+    // console.log('movie', movie);
+
+    useLayoutEffect(() => {
+        getMovie(idMovie)
+
+    },[]);
+
+    const {title, overview, genres, poster_path, release_date, revenue, runtime,  vote_average, tagline, video } = movie;
+    const d = new Date(release_date);
+    let year = d.getFullYear();
+
+    const voteColor = (vote_average) => {
+
+        if (vote_average >= 8) {
+            return 'green';
+        } else if (vote_average >= 6) {
+            return 'yellow';
+        } else {
+            return 'red';
+        }
+    }
+
+
     return(
-        <div>
-            <h1>Movie page</h1>
-        </div>
+        <Fragment>
+            {loading ? <Loading/>: ''}
+            <Link to="/" className={`btn button_back mb-3 ${loading ? 'hidden' : ''}`}>Назад</Link>
+
+            <div className={`card mb-4 movie_card justify-content-center ${loading ? 'hidden' : ''}`}>
+
+                <div className="card-body white_text_dark_bg">
+                    <div className="row d-flex justify-content">
+                        <img src={poster_path ? (IMG_API + poster_path) : poster } alt={title} className="inside-movie radius inside-movie_margin"/>
+                        <div className="col">
+                            <div className="d-flex align-items-start">
+                                <h1>{title}({year})</h1>
+                                <span className={`bg_vote ${voteColor(vote_average)}`}>{vote_average}</span>
+
+                            </div>
+
+                            {/*<h3 className="pb-2 text_color_h3">({original_title})</h3>*/}
+                            <p className="fst-italic">"{tagline}"</p>
+                            <div className="d-flex flex-wrap mb-3" >
+
+                                {genres
+                                    ? genres.map((genre, index, array) =>
+                                        <div className="genre" key={genre.id}>{genre.name}{array.length - 1 === index ? '' : ','}</div>
+                                    )
+                                    : ''
+                                }
+                            </div>
+                            <div className="mb-2">Runtime: {runtime} minutes</div>
+                            <p>Budget: $ {revenue} </p>
+
+                            <div className="fs-5">{overview}</div>
+                            <div className="fs-5">{video}</div>
+
+                        </div>
+                        <Trailer idMovie={idMovie} />
+                        {/*<div className="video-responsive">*/}
+                        {/*    <iframe*/}
+                        {/*        width="853"*/}
+                        {/*        height="480"*/}
+                        {/*        src={`https://www.youtube.com/embed/OUUO2VbrVkA`}*/}
+                        {/*        frameBorder="0"*/}
+                        {/*        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"*/}
+                        {/*        allowFullScreen*/}
+                        {/*        title="Embedded youtube"*/}
+                        {/*    />*/}
+                        {/*</div>*/}
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </Fragment>
     )
 }

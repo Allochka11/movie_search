@@ -1,33 +1,32 @@
-import React from "react";
-import {CLEAR_MOVIES, GET_MOVIE, GET_REPOS, SEARCH_MOVIES, SET_LOADING} from "../types";
+import {CLEAR_LAST_MOVIE, CLEAR_MOVIES, GET_MOVIE, GET_VIDEO, SEARCH_MOVIES, SET_LOADING} from "../types";
 
 const handlers = {
     // ищет фильм по названию
     [SEARCH_MOVIES]: (state, action) => ({
         ...state,
         movies: action.payload,
-        loading: false
-    }),
 
-    // получает репозиторий с фильмами, ссылки
-    // [GET_REPOS]: (state, action) => ({
-    //     ...state,
-    //     repos: action.payload,
-    //     loading: false
-    // }),
+
+    }),
 
     // получает конкретный фильм
     [GET_MOVIE]: (state, action) => ({
         ...state,
-        movie: action.payload,
-        loading: false
+        movie: action.payload
     }),
 
-    // ставит лоадер в момент запроса
-    [SET_LOADING]: (state) => ({
+    [GET_VIDEO]: (state, action) => ({
         ...state,
-        loading: true
+        movieTrailer: action.payload
     }),
+
+
+    // ставит лоадер в момент запроса
+    [SET_LOADING]: (state, action) => ({
+        ...state,
+        loading: action.loading
+    }),
+
 
     // очищает поиск фильмов
     [CLEAR_MOVIES]: (state) => ({
@@ -35,14 +34,20 @@ const handlers = {
         movies: []
     }),
 
+    // очищает поиск фильмов
+    [CLEAR_LAST_MOVIE]: (state) => ({
+        ...state,
+        movie: {}
+    }),
+
     DEFAULT: (state) => state
 }
-console.log('movie handlers',handlers)
+// console.log('movie handlers', handlers)
 
 export const movieReducer = (state, action) => {
     const handler = handlers[action.type] || handlers.DEFAULT;
 
-    console.log('movie handler',handler)
+    // console.log('movie handler',action)
 
 
     return handler(state, action);

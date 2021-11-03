@@ -4,7 +4,7 @@ import {AlertContext} from "../context/alert/alertContext";
 export const Alert = () => {
     const {alert, hide} = useContext(AlertContext);
 
-    console.log('alert', alert)
+    // console.log('alert', alert)
 
     if (!alert) return null
 
@@ -21,5 +21,6 @@ export const Alert = () => {
             </div>
 
         </div>
+
     )
 }

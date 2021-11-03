@@ -11,17 +11,19 @@ import {MovieState} from "./context/movie/movieState";
 
 
 function App() {
+
+
     return (
         <MovieState>
             <AlertState>
                 <BrowserRouter>
                     <Header/>
                     <div className="container pt-4">
-                        <Alert alert={{text: 'Test'}}/>
+                        <Alert/>
                         <Switch>
                             <Route path="/" exact component={Home}/>
-                            <Route path="/about" exact component={About}/>
-                            <Route path="/movie/:name" exact component={Movie}/>
+                            <Route path="/about" component={About}/>
+                            <Route path="/movie/:id" component={Movie}/>
                         </Switch>
 
                     </div>

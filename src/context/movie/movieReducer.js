@@ -1,12 +1,10 @@
-import {CLEAR_LAST_MOVIE, CLEAR_MOVIES, GET_MOVIE, GET_VIDEO, SEARCH_MOVIES, SET_LOADING} from "../types";
+import {CLEAR_LAST_MOVIE, CLEAR_MOVIES, GET_MOVIE, GET_TRAILER, SEARCH_MOVIES, SET_LOADING} from "../types";
 
 const handlers = {
     // ищет фильм по названию
     [SEARCH_MOVIES]: (state, action) => ({
         ...state,
         movies: action.payload,
-
-
     }),
 
     // получает конкретный фильм
@@ -15,9 +13,9 @@ const handlers = {
         movie: action.payload
     }),
 
-    [GET_VIDEO]: (state, action) => ({
+    [GET_TRAILER]: (state, action) => ({
         ...state,
-        movieTrailer: action.payload
+        trailer: action.payload
     }),
 
 
@@ -47,7 +45,7 @@ const handlers = {
 export const movieReducer = (state, action) => {
     const handler = handlers[action.type] || handlers.DEFAULT;
 
-    // console.log('movie handler',action)
+    console.log('movie handler',action)
 
 
     return handler(state, action);

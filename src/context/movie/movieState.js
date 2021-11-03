@@ -1,7 +1,7 @@
 import React, {useReducer} from "react";
 import {movieReducer} from "./movieReducer";
 import {MovieContext} from "./movieContext";
-import {CLEAR_LAST_MOVIE, CLEAR_MOVIES, GET_MOVIE, GET_VIDEO, SEARCH_MOVIES, SET_LOADING} from "../types";
+import {CLEAR_LAST_MOVIE, CLEAR_MOVIES, GET_MOVIE, GET_TRAILER, SEARCH_MOVIES, SET_LOADING} from "../types";
 import axios from "axios";
 
 
@@ -14,13 +14,12 @@ export const MovieState = ({children}) => {
     const initialState = {
         movie: {},
         movies: [],
-        movieTrailer: [],
+        trailer: [],
         loading: true
     }
 
     const [state, dispatch] = useReducer(movieReducer, initialState);
 
-    // console.log(initialState)
     const setLoading = (loading) => {
         dispatch({
             type: SET_LOADING,
@@ -48,22 +47,17 @@ export const MovieState = ({children}) => {
                 });
                 setTimeout(() => {
                     resolve();
-                }, 500)
+                }, 2000)
             });
         }).then(() => {
             setLoading(false);
         })
-
-
-        // console.log(dispatch)
-        // setLoading(true)
-
     }
-    // console.log(initialState)
-    // setLoading(true)
+
 
 
     const getMovie = id => {
+
         setLoading(true);
 
         axios.get(
@@ -77,14 +71,13 @@ export const MovieState = ({children}) => {
                 })
 
                 setTimeout(() => {
-
                     resolve()
-                }, 1000);
+                }, 2000);
             })
         }).then(() => setLoading(false));
     }
 
-    const getVideo = id => {
+    const getTrailer = id => {
         console.log('get id',id)
 
         setLoading(true);
@@ -92,24 +85,24 @@ export const MovieState = ({children}) => {
             SEARCH + `movie/${id}/videos?api_key=${KEY}&language=en-US`
         ).then(response => {
 
-            console.log('ответ',response.data.results)
+            // console.log('ответ',response.data.results)
 
             const videoKeys = [];
-            response.data.results.map((video,index)=> {
+            response.data.results.map((video) => {
                 videoKeys.push(video.key)
             })
 
-            // console.log('videoKeys',videoKeys)
-
             return new Promise(resolve => {
                 dispatch({
-                    type: GET_VIDEO,
+                    type: GET_TRAILER,
                     payload: videoKeys
                 })
+
                 setTimeout(() => {
                     resolve()
-                }, 1000);
+                }, 500);
             })
+
         }).then(() => setLoading(false));
     }
 
@@ -123,11 +116,11 @@ export const MovieState = ({children}) => {
     }
 
 
-    const {movie, movies, loading, movieTrailer} = state;
+    const {movie, movies, loading, trailer} = state;
 
     return (
         <MovieContext.Provider value={{
-            searchMovies, getMovie, getVideo, setLoading, clearSearch, clearMovie, movie, movies, loading, movieTrailer
+            searchMovies, getMovie, getTrailer, setLoading, clearSearch, clearMovie, movie, movies, loading, trailer
         }}>
             {children}
         </MovieContext.Provider>

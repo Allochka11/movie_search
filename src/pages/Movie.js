@@ -46,7 +46,7 @@ export const Movie = ({match}) => {
                         <img src={poster_path ? (IMG_API + poster_path) : poster } alt={title} className="inside-movie radius inside-movie_margin"/>
                         <div className="col">
                             <div className="d-flex align-items-start">
-                                <h1>{title}({year})</h1>
+                                <h2 className="title">{title}({year})</h2>
                                 <span className={`bg_vote ${voteColor(vote_average)}`}>{vote_average}</span>
 
                             </div>
@@ -70,18 +70,6 @@ export const Movie = ({match}) => {
 
                         </div>
                         <Trailer idMovie={idMovie} />
-                        {/*<div className="video-responsive">*/}
-                        {/*    <iframe*/}
-                        {/*        width="853"*/}
-                        {/*        height="480"*/}
-                        {/*        src={`https://www.youtube.com/embed/OUUO2VbrVkA`}*/}
-                        {/*        frameBorder="0"*/}
-                        {/*        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"*/}
-                        {/*        allowFullScreen*/}
-                        {/*        title="Embedded youtube"*/}
-                        {/*    />*/}
-                        {/*</div>*/}
-
                     </div>
                 </div>
             </div>

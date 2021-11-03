@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useLayoutEffect} from 'react';
+import React, {Fragment, useContext, useLayoutEffect, useState} from 'react';
 import {MovieContext} from "../context/movie/movieContext";
 import poster from "../no_poster.jpg";
 import {Link} from "react-router-dom";
@@ -10,12 +10,12 @@ export const Movie = ({match}) => {
     // debugger;
     const {getMovie, movie, loading} = useContext(MovieContext);
     const idMovie = match.params.id;
+    const [show, setShow] = useState(false)
 
     // console.log('movie', movie);
 
     useLayoutEffect(() => {
         getMovie(idMovie)
-
     },[]);
 
     const {title, overview, genres, poster_path, release_date, revenue, runtime,  vote_average, tagline, video } = movie;
@@ -34,6 +34,8 @@ export const Movie = ({match}) => {
     }
 
 
+
+
     return(
         <Fragment>
             {loading ? <Loading/>: ''}
@@ -42,7 +44,7 @@ export const Movie = ({match}) => {
             <div className={`card mb-4 movie_card justify-content-center ${loading ? 'hidden' : ''}`}>
 
                 <div className="card-body white_text_dark_bg">
-                    <div className="row d-flex justify-content">
+                    <div className="row d-flex justify-content-center">
                         <img src={poster_path ? (IMG_API + poster_path) : poster } alt={title} className="inside-movie radius inside-movie_margin"/>
                         <div className="col">
                             <div className="d-flex align-items-start">
@@ -65,12 +67,18 @@ export const Movie = ({match}) => {
                             <div className="mb-2">Runtime: {runtime} minutes</div>
                             <p>Budget: $ {revenue} </p>
 
-                            <div className="fs-5">{overview}</div>
-                            <div className="fs-5">{video}</div>
-
+                            <div className="mb-4">{overview}</div>
+                            <button className="btn button_back btn-color mb-3" onClick={()=>setShow(!show)}>Watch trailer</button>
                         </div>
-                        <Trailer idMovie={idMovie} />
+
+
+
                     </div>
+
+                    <div className={`trailer_display ${show ? 'display_show' : 'display_hide'}`} >
+                        <Trailer idMovie={idMovie}/>
+                    </div>
+
                 </div>
             </div>
 

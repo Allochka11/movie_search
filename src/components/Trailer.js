@@ -11,7 +11,7 @@ export const Trailer = ({idMovie}) => {
 
         getTrailer(idMovie);
 
-    },[])
+    },[idMovie])
 
     // console.log(trailer)
 
@@ -23,14 +23,14 @@ export const Trailer = ({idMovie}) => {
 
 
     return(
-        <>
+        <div>
             {trailer && !trailer.length
                 ? ''
-                : <div className="video-responsive">
+                : <div className="video-container">
 
                     <iframe
-                        width="853"
-                        height="480"
+                        width="560"
+                        height="315"
                         src={`https://www.youtube.com/embed/${trailer[0]}`}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -41,7 +41,7 @@ export const Trailer = ({idMovie}) => {
             }
 
 
-        </>
+        </div>
 
     )
 }

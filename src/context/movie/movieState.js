@@ -47,7 +47,7 @@ export const MovieState = ({children}) => {
                 });
                 setTimeout(() => {
                     resolve();
-                }, 2000)
+                }, 1000)
             });
         }).then(() => {
             setLoading(false);
@@ -89,7 +89,7 @@ export const MovieState = ({children}) => {
 
             const videoKeys = [];
             response.data.results.map((video) => {
-                videoKeys.push(video.key)
+                return videoKeys.push(video.key)
             })
 
             return new Promise(resolve => {

@@ -42,12 +42,17 @@ body {
   display: none !important;
 }
 
-input[type="text"]:focus, .button_back:focus {
+.button_back:focus {
+  box-shadow:none;
+}
+
+input[type="text"]:focus, .button_back:hover {
   outline: none !important;
   border-color: transparent;
   box-shadow: 0 0 12px 1px rgb(25 184 218);
   transition: 0.3s all;
 }
+
 
 
 input[type="text"], .button_back {
@@ -119,7 +124,7 @@ code {
 }
 
 .inside-movie_margin {
-  margin: 0 10px;
+  margin: 0 10px 10px;
 
 }
 
@@ -186,12 +191,12 @@ code {
   //max-width: 960px;
   min-width: 280px;
 }
-
-@media screen and (max-width: 360px) {
-  .inside-movie {
-    margin-left:0;
-  }
-}
+//
+//@media screen and (max-width: 320px) {
+//  .inside-movie {
+//    margin-left:10px;
+//  }
+//}
 
 
 .video-responsive {
@@ -208,4 +213,27 @@ code {
   width: 100%;
   position: absolute;
 }
+.video-container {
+  //width: 662px;
+  //height:372px;
+  height:0;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.display_hide {
+  display: none;
+}
+.display_show {
+  display: block;
+}
+
+
 

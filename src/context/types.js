@@ -6,3 +6,4 @@ export const GET_MOVIE = 'GET_MOVIE'; // получает конкретный �
 export const GET_TRAILER = 'GET_TRAILER';  // получает трейлер
 export const SEARCH_MOVIES = 'SEARCH_MOVIES'; // ищет фильм по названию
 export const SET_LOADING = 'SET_LOADING'; // устанавливает флаг загрузки, лоадер, в тот момент, когда мы будем делать запрос
+export const GET_POPULAR = 'GET_POPULAR'; // ищет самые популярные фильмы

@@ -2,6 +2,8 @@ import React, {Fragment, useContext, useState} from 'react';
 import {AlertContext} from "../context/alert/alertContext";
 import {MovieContext} from "../context/movie/movieContext";
 
+
+
 export const Input = () => {
     const [value, setValue] = useState('');
     const {show, hide} = useContext(AlertContext);

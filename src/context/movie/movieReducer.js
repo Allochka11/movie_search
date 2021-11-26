@@ -1,4 +1,12 @@
-import {CLEAR_LAST_MOVIE, CLEAR_MOVIES, GET_MOVIE, GET_TRAILER, SEARCH_MOVIES, SET_LOADING} from "../types";
+import {
+    CLEAR_LAST_MOVIE,
+    CLEAR_MOVIES,
+    GET_MOVIE,
+    GET_POPULAR,
+    GET_TRAILER,
+    SEARCH_MOVIES,
+    SET_LOADING
+} from "../types";
 
 const handlers = {
     // ищет фильм по названию
@@ -16,6 +24,11 @@ const handlers = {
     [GET_TRAILER]: (state, action) => ({
         ...state,
         trailer: action.payload
+    }),
+
+    [GET_POPULAR]: (state, action) => ({
+        ...state,
+        popular: action.payload
     }),
 
 

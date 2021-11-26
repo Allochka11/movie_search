@@ -1,7 +1,15 @@
 import React, {useReducer} from "react";
 import {movieReducer} from "./movieReducer";
 import {MovieContext} from "./movieContext";
-import {CLEAR_LAST_MOVIE, CLEAR_MOVIES, GET_MOVIE, GET_TRAILER, SEARCH_MOVIES, SET_LOADING} from "../types";
+import {
+    CLEAR_LAST_MOVIE,
+    CLEAR_MOVIES,
+    GET_MOVIE,
+    GET_POPULAR,
+    GET_TRAILER,
+    SEARCH_MOVIES,
+    SET_LOADING
+} from "../types";
 import axios from "axios";
 
 
@@ -15,6 +23,7 @@ export const MovieState = ({children}) => {
         movie: {},
         movies: [],
         trailer: [],
+        popular: [],
         loading: true
     }
 
@@ -106,6 +115,32 @@ export const MovieState = ({children}) => {
         }).then(() => setLoading(false));
     }
 
+    const getPopular = () => {
+        // console.log('get id',id)
+
+        setLoading(true);
+
+        axios.get(
+            SEARCH + `movie/popular?api_key=${KEY}&language=en-US&page=1`
+        ).then(response => {
+
+            // console.log('популярное',response.data.results)
+
+            return new Promise(resolve => {
+                dispatch({
+                    type: GET_POPULAR,
+                    payload: response.data
+                })
+
+                setTimeout(() => {
+                    resolve()
+                }, 1000);
+            })
+
+        }).then(() => setLoading(false));
+    }
+
+
 
 
 
@@ -116,11 +151,11 @@ export const MovieState = ({children}) => {
     }
 
 
-    const {movie, movies, loading, trailer} = state;
+    const {movie, movies, loading, trailer, popular} = state;
 
     return (
         <MovieContext.Provider value={{
-            searchMovies, getMovie, getTrailer, setLoading, clearSearch, clearMovie, movie, movies, loading, trailer
+            searchMovies, getMovie, getTrailer, getPopular, setLoading, clearSearch, clearMovie, movie, movies, loading, trailer, popular
         }}>
             {children}
         </MovieContext.Provider>

@@ -39,8 +39,6 @@ export const Trailer = ({idMovie}) => {
                     />
                 </div>
             }
-
-
         </div>
 
     )

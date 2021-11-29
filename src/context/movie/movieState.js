@@ -44,19 +44,21 @@ export const MovieState = ({children}) => {
 
     const searchMovies = (value) => {
 
-        // setLoading(true);
+        setLoading(true);
 
         axios.get(
             SEARCH + `search/movie?api_key=${KEY}&query=${value}&language=en-US`
         ).then(response=> {
+            // setLoading(true)
             return new Promise((resolve) => {
                 dispatch({
                     type: SEARCH_MOVIES,
                     payload: response.data,
                 });
+                // setLoading(true)
                 setTimeout(() => {
                     resolve();
-                }, 1000)
+                }, 2000)
             });
         }).then(() => {
             setLoading(false);
@@ -80,7 +82,7 @@ export const MovieState = ({children}) => {
 
                 setTimeout(() => {
                     resolve()
-                }, 2000);
+                }, 1000);
             })
         }).then(() => setLoading(false));
     }

@@ -12,10 +12,13 @@ export const Slider = () => {
     const {loading, getPopular} = useContext(MovieContext);
 
 
-
+    // if (localStorage.getItem("popularMovies") === null) {
+    //     // getPopular();
+    // }
     useLayoutEffect ( ()=> {
         getPopular();
     },[])
+    // console.log(loading)
 
     const raw = localStorage.getItem('popularMovies');
     const popularMovies = JSON.parse(raw);
@@ -44,9 +47,10 @@ export const Slider = () => {
 
     return (
         <div className="row">
-            {loading ? <Loading/>
-                :<Carousel fade interval={2000} className="p-0 carousel_radius">
-                    {popularMovies.map((popularMovie, key ) => {
+            {/*{loading ? <Loading/> : ''}*/}
+
+                <Carousel fade interval={2000} className="p-0 carousel_radius">
+                    {popularMovies ? popularMovies.map((popularMovie, key ) => {
                         return (
                             <Carousel.Item key={key} className="carousel_height">
                                 <Link to={`/movie/${popularMovie.id}`}>
@@ -62,9 +66,9 @@ export const Slider = () => {
                                 </Link>
                             </Carousel.Item>
                         )
-                    })}
+                    }) : ''}
                 </Carousel>
-            }
+
         </div>
     )
 }

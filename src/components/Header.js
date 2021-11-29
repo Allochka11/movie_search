@@ -16,6 +16,7 @@ export const Header = () => {
                         height={'50px'}
                     />
                 </NavLink>
+
                 {/*<ul className="navbar-nav">*/}
                 {/*    <li className="nav-item">*/}
                 {/*        <NavLink className="nav-link" exact to="/">Главная</NavLink>*/}

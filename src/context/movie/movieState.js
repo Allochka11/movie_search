@@ -44,11 +44,11 @@ export const MovieState = ({children}) => {
 
     const searchMovies = (value) => {
 
-        setLoading(true);
+        // setLoading(true);
 
         axios.get(
             SEARCH + `search/movie?api_key=${KEY}&query=${value}&language=en-US`
-        ).then((response)=> {
+        ).then(response=> {
             return new Promise((resolve) => {
                 dispatch({
                     type: SEARCH_MOVIES,
@@ -72,7 +72,6 @@ export const MovieState = ({children}) => {
         axios.get(
             SEARCH + `movie/${id}?api_key=${KEY}&language=en-US`
         ).then(response => {
-
             return new Promise(resolve => {
                 dispatch({
                     type: GET_MOVIE,
@@ -87,9 +86,9 @@ export const MovieState = ({children}) => {
     }
 
     const getTrailer = id => {
-        console.log('get id',id)
+        // console.log('get id',id)
 
-        setLoading(true);
+        // setLoading(true);
         axios.get(
             SEARCH + `movie/${id}/videos?api_key=${KEY}&language=en-US`
         ).then(response => {
@@ -115,6 +114,7 @@ export const MovieState = ({children}) => {
         }).then(() => setLoading(false));
     }
 
+
     const getPopular = () => {
         // console.log('get id',id)
 
@@ -127,18 +127,23 @@ export const MovieState = ({children}) => {
             // console.log('популярное',response.data.results)
 
             return new Promise(resolve => {
-                dispatch({
-                    type: GET_POPULAR,
-                    payload: response.data
-                })
+                localStorage.setItem('popularMovies', JSON.stringify(response.data.results));
+
+
+                // console.log(popularMovies)
+                // dispatch({
+                //     type: GET_POPULAR,
+                //     payload: response.data
+                // })
 
                 setTimeout(() => {
                     resolve()
                 }, 1000);
-            })
+            }).then(() => setLoading(false));
 
-        }).then(() => setLoading(false));
+        });
     }
+    // getPopular();
 
 
 

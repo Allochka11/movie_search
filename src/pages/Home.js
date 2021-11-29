@@ -9,18 +9,19 @@ import {Slider} from "../components/Slider";
 
 
 export const Home = () => {
-    const {loading, movies, getPopular,popular} = useContext(MovieContext);
+    const {loading, movies} = useContext(MovieContext);
 
-    useEffect ( ()=> {
-        getPopular();
-    },[])
+    // window.addEventListener('storage', event => {
+    //     console.log(event)
+    // })
 
-    // console.log(popular)
+
 
 
 
     return (
         <div>
+            <Slider/>
             <Input/>
             {movies.total_results === undefined
                 ? ''
@@ -41,13 +42,6 @@ export const Home = () => {
                 </div>
             }
             {movies.total_results === 0 ? <p>Фильма нет. Попробуйте еще</p> : ''}
-
-            {popular.total_results === undefined
-                ? ''
-                : <Slider popular={popular.results}/>
-            }
-
-
         </div>
     )
 

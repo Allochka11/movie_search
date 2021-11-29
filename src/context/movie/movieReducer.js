@@ -28,7 +28,8 @@ const handlers = {
 
     [GET_POPULAR]: (state, action) => ({
         ...state,
-        popular: action.payload
+        popular: action.payload,
+        loading: false
     }),
 
 

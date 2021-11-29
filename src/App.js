@@ -9,9 +9,7 @@ import {Alert} from "./components/Alert";
 import {AlertState} from "./context/alert/alertState";
 import {MovieState} from "./context/movie/movieState";
 
-
 function App() {
-
 
     return (
         <MovieState>
@@ -19,15 +17,14 @@ function App() {
                 <BrowserRouter>
                     <Header/>
                     <div className="container pt-4">
-                        <Alert/>
+
                         <Switch>
                             <Route path="/" exact component={Home}/>
                             <Route path="/about" component={About}/>
                             <Route path="/movie/:id" component={Movie}/>
                         </Switch>
-
+                        <Alert/>
                     </div>
-
                 </BrowserRouter>
             </AlertState>
         </MovieState>

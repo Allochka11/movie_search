@@ -4,7 +4,7 @@ import {alertReducer} from "./alertReducer";
 import {HIDE_ALERT, SHOW_ALERT} from "../types";
 
 export const AlertState = ({children}) => {
-    // console.log('children',children)
+
     const [state, dispatch] = useReducer(alertReducer, null)
 
     const hide = () => dispatch({type: HIDE_ALERT});
@@ -14,7 +14,6 @@ export const AlertState = ({children}) => {
             payload: {type, text}
         })
     }
-
 
     return(
         <AlertContext.Provider value={{hide, show, alert: state}}>

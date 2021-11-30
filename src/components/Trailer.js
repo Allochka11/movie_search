@@ -5,29 +5,15 @@ export const Trailer = ({idMovie}) => {
 
     const {getTrailer, trailer} = useContext(MovieContext);
 
-
     useEffect(()=>{
-        console.log('getVideo id movie',idMovie)
-
         getTrailer(idMovie);
-
-    },[idMovie])
-
-    // console.log(trailer)
-
-
-
-
-
-    // console.log('movieTrailer',movieTrailer)
-
+    },[idMovie]);
 
     return(
         <div>
             {trailer && !trailer.length
                 ? <div>Трейлер отсутствует!</div>
                 : <div className="video-container">
-
                     <iframe
                         width="560"
                         height="315"
@@ -40,6 +26,5 @@ export const Trailer = ({idMovie}) => {
                 </div>
             }
         </div>
-
     )
 }

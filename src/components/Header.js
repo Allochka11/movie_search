@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 
 
 export const Header = () => {
+
     return(
         <div className="container d-flex justify-content-end">
             <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
@@ -16,15 +17,6 @@ export const Header = () => {
                         height={'50px'}
                     />
                 </NavLink>
-
-                {/*<ul className="navbar-nav">*/}
-                {/*    <li className="nav-item">*/}
-                {/*        <NavLink className="nav-link" exact to="/">Главная</NavLink>*/}
-                {/*    </li>*/}
-                {/*    <li className="nav-item">*/}
-                {/*        <NavLink className="nav-link" to="/about">О приложении</NavLink>*/}
-                {/*    </li>*/}
-                {/*</ul>*/}
             </nav>
         </div>
     )

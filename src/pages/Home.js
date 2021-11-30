@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {Input} from "../components/Input";
 import {Card} from "../components/Card";
 import {MovieContext} from "../context/movie/movieContext";
@@ -10,14 +10,6 @@ import {Slider} from "../components/Slider";
 
 export const Home = () => {
     const {loading, movies} = useContext(MovieContext);
-
-    // window.addEventListener('storage', event => {
-    //     console.log(event)
-    // })
-
-
-
-
 
     return (
         <div>
@@ -44,5 +36,4 @@ export const Home = () => {
             {movies.total_results === 0 ? <p>Фильма нет. Попробуйте еще</p> : ''}
         </div>
     )
-
 }

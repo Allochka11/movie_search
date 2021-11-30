@@ -2,8 +2,6 @@ import React, {Fragment, useContext, useState} from 'react';
 import {AlertContext} from "../context/alert/alertContext";
 import {MovieContext} from "../context/movie/movieContext";
 
-
-
 export const Input = () => {
     const [value, setValue] = useState('');
     const {show, hide} = useContext(AlertContext);
@@ -15,6 +13,7 @@ export const Input = () => {
         }
 
         clearSearch();
+
         if (value.trim()) {
             event.preventDefault();
             hide();
@@ -35,7 +34,8 @@ export const Input = () => {
                     placeholder="Search...example: Avengers"
                     value={value}
                     onChange={event => setValue(event.target.value)}
-                    onKeyPress={onSubmit} />
+                    onKeyPress={onSubmit}
+                />
             </div>
         </Fragment>
     )

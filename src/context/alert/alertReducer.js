@@ -6,12 +6,8 @@ const handlers = {
     DEFAULT: state => state
 }
 
-// console.log('handlers', handlers)
-
 
 export const alertReducer = (state, action) => {
     const handler = handlers[action.type] || handlers.DEFAULT;
-    // console.log('state', state)
-    // console.log('action', action)
     return handler(state, action);
 }

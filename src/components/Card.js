@@ -8,7 +8,6 @@ export const Card = ({movie}) => {
 
     const {id, poster_path, original_title, vote_average, overview } = movie;
 
-
     const voteColor = (vote_average) => {
 
         if (vote_average >= 8) {

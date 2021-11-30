@@ -7,18 +7,16 @@ import {Trailer} from "../components/Trailer";
 
 const IMG_API = 'http://image.tmdb.org/t/p/original';
 export const Movie = ({match}) => {
-    // debugger;
+
     const {getMovie, movie, loading} = useContext(MovieContext);
     const idMovie = match.params.id;
     const [show, setShow] = useState(false)
-
-    // console.log('movie', movie);
 
     useLayoutEffect(() => {
         getMovie(idMovie)
     },[]);
 
-    const {title, overview, genres, poster_path, release_date, revenue, runtime,  vote_average, tagline, video } = movie;
+    const {title, overview, genres, poster_path, release_date, revenue, runtime,  vote_average, tagline} = movie;
     const d = new Date(release_date);
     let year = d.getFullYear();
 
@@ -32,9 +30,6 @@ export const Movie = ({match}) => {
             return 'red';
         }
     }
-
-
-
 
     return(
         <Fragment>
@@ -52,11 +47,8 @@ export const Movie = ({match}) => {
                                 <span className={`bg_vote ${voteColor(vote_average)}`}>{vote_average}</span>
 
                             </div>
-
-                            {/*<h3 className="pb-2 text_color_h3">({original_title})</h3>*/}
                             <p className="fst-italic">"{tagline}"</p>
                             <div className="d-flex flex-wrap mb-3" >
-
                                 {genres
                                     ? genres.map((genre, index, array) =>
                                         <div className="genre" key={genre.id}>{genre.name}{array.length - 1 === index ? '' : ','}</div>
@@ -66,13 +58,9 @@ export const Movie = ({match}) => {
                             </div>
                             <div className="mb-2">Runtime: {runtime} minutes</div>
                             <p>Budget: $ {revenue} </p>
-
                             <div className="mb-4">{overview}</div>
                             <button className="btn button_back btn-color mb-3" onClick={()=>setShow(!show)}>Watch trailer</button>
                         </div>
-
-
-
                     </div>
 
                     <div className={`trailer_display ${show ? 'display_show' : 'display_hide'}`} >
@@ -81,12 +69,6 @@ export const Movie = ({match}) => {
 
                 </div>
             </div>
-
-
-
-
-
-
         </Fragment>
     )
 }

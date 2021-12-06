@@ -5,9 +5,6 @@ import {MovieContext} from "../context/movie/movieContext";
 import {Loading} from "../components/Loading";
 import {Slider} from "../components/Slider";
 
-
-
-
 export const Home = () => {
     const {loading, movies} = useContext(MovieContext);
 

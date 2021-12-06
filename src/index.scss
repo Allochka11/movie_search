@@ -1,44 +1,52 @@
 @import "~bootstrap/scss/bootstrap";
+
+// Переменные цвета
+$main_color:#212529;
+$white_color: #fff;
+
+//border
+
+$radius: 5px;
+
+//Шаблоны
+%border_color {
+  border: 1px solid #08b4e1;
+}
+
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #212529;
-  color: #fff;
+  background-color: $main_color;
+  color: $white_color;
   border: none;
-
-
 
   a {
     text-decoration: none;
-    color: #fff;
+    color: $white_color;
 
     &:hover {
-      text-decoration: none;
-      color: #fff;
+      //text-decoration: none;
+      color: $white_color;
     }
   }
 }
 
+
+
 .white_text {
-  color: #fff;
+  color: $white_color;
 }
 
-.border_main, .genre {
-  border: 1px solid #08b4e1;
-  border-radius: 5px;
-}
 
-.box_shadow, .movie {
-  box-shadow: 0 0 6px 0 #000;
-}
 
-.text_color {
-  color: #212529;
-}
+//.text_color {
+//  color: $bg_color;
+//}
 
 .hidden {
   display: none !important;
@@ -58,30 +66,14 @@ input[type="text"]:focus, .button_back:hover {
 
 
 input[type="text"], .button_back {
-  color: #fff !important;
-  border: 1px solid #19b8da;
+  color: $white_color !important;
+  @extend %border_color;
 }
 
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 .dark-theme, .dark-theme:focus {
-  background-color: #212529;
+  background-color: $main_color;
 }
-
-.btn-color {
-  background-color: #1cb8d8;
-}
-
-
-.radius {
-  border-radius: 5px;
-}
-
-
 
 .button_x {
   font-weight: 900;
@@ -93,7 +85,7 @@ code {
 
 .movie {
   width: 300px;
-  //box-shadow: 0 0 12px 1px rgb(25 184 218);
+  box-shadow: 0 0 6px 0 #000;
   position: relative;
   overflow: hidden;
   background-color: inherit;
@@ -103,7 +95,7 @@ code {
   .overview {
     position: absolute;
     background-color: #1cb8d8;
-    color: #212529;
+    color: $main_color;
     bottom: -1px;
     left: 0;
     right: 0;
@@ -114,7 +106,6 @@ code {
     text-align: center;
     font-size: 14px;
   }
-
 }
 
 
@@ -127,12 +118,11 @@ code {
 
 .inside-movie_margin {
   margin: 0 10px 10px;
-
 }
 
 .movie_info {
-  background-color: white;
-  color: #212529;
+  background-color: $white_color;
+  color: $main_color;
 }
 
 .movie:hover{
@@ -142,10 +132,7 @@ code {
 
 .movie:hover .overview {
   transform: translateY(0%);
-
 }
-
-
 
 .bg_vote {
   display: flex;
@@ -156,12 +143,12 @@ code {
   font-weight: bold;
   margin-left: 10px;
   width: 32px;
-
 }
 
 .green {
   color: green;
 }
+
 .yellow {
   color: yellow;
 }
@@ -170,10 +157,6 @@ code {
   color: red;
 }
 
-.text_color_h3 {
-  color: #131a24;
-
-}
 .about_movie {
   display: flex;
   flex-direction: column;
@@ -182,46 +165,22 @@ code {
 }
 
 .genre {
-  //background: #08b4e1;
-  padding: 0 5px 2px 5px;
-  margin: 3px;
+  padding-right: 5px;
+  font-size: 13px;
 }
 
 .movie_card {
   background-color: #30343b;
-  border: 1px solid #0fb6df;
-  //max-width: 960px;
+  @extend %border_color;
   min-width: 280px;
 }
-//
-//@media screen and (max-width: 320px) {
-//  .inside-movie {
-//    margin-left:10px;
-//  }
-//}
 
-
-.video-responsive {
-  overflow: hidden;
-  padding-bottom: 56.25%;
-  position: relative;
-  height: 0;
-}
-
-.video-responsive iframe {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-}
 .video-container {
-  //width: 662px;
-  //height:372px;
   height:0;
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
 }
+
 .video-container iframe {
   position: absolute;
   top: 0;
@@ -233,49 +192,20 @@ code {
 .display_hide {
   display: none;
 }
+
 .display_show {
   display: block;
-}
-.row {
-  margin: 0;
-}
-
-.row_posters {
-  display: flex;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  padding: 20px 0 20px 10px;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-.row_poster {
-  object-fit: contain;
-  width: 100%;
-  max-height: 300px;
-  margin-right: 10px;
-  transition: transform 450ms;
-  border-radius: 5px;
-
-  &:hover {
-    transform: scale(1.08);
-    opacity: 0.2;
-
-  }
 }
 
 .slider_img {
   object-fit: cover;
   object-position: right;
-  //border-radius: 5px;
-  //height: 400px;
+
 }
 
 .carousel_title {
   font-size: inherit;
 }
-
 
 @media screen and (min-width: 801px) {
   .carousel_height {

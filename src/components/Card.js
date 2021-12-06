@@ -22,7 +22,7 @@ export const Card = ({movie}) => {
     return(
         <div className="card mt-4 card_border movie border-0 ">
             <Link to={`/movie/${id}`}>
-                <img src= {poster_path ? (IMG_API + poster_path) : poster } alt={original_title} className=" card-img-top dark-theme"
+                <img src= {poster_path ? (IMG_API + poster_path) : poster } alt={original_title} className=" card-img-top"
             />
             <div className="card-body radius d-flex dark-theme align-items-center justify-content-between">
                 <h6 className="card-title">{original_title}</h6>

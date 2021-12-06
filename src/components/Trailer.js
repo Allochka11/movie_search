@@ -11,6 +11,7 @@ export const Trailer = ({idMovie}) => {
 
     return(
         <div>
+
             {trailer && !trailer.length
                 ? <div>Трейлер отсутствует!</div>
                 : <div className="video-container">

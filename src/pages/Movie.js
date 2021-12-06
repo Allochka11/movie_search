@@ -34,13 +34,13 @@ export const Movie = ({match}) => {
     return(
         <Fragment>
             {loading ? <Loading/>: ''}
-            <Link to="/" className={`btn button_back mb-3 ${loading ? 'hidden' : ''}`}>Назад</Link>
+            <Link to="/" className={`btn button_back text-white mb-3 ${loading ? 'hidden' : ''}`}>Назад</Link>
 
             <div className={`card mb-4 movie_card justify-content-center ${loading ? 'hidden' : ''}`}>
 
                 <div className="card-body white_text_dark_bg">
                     <div className="row d-flex justify-content-center">
-                        <img src={poster_path ? (IMG_API + poster_path) : poster } alt={title} className="inside-movie radius inside-movie_margin"/>
+                        <img src={poster_path ? (IMG_API + poster_path) : poster } alt={title} className="inside-movie rounded inside-movie_margin"/>
                         <div className="col">
                             <div className="d-flex align-items-start">
                                 <h2 className="title">{title}({year})</h2>
@@ -51,7 +51,7 @@ export const Movie = ({match}) => {
                             <div className="d-flex flex-wrap mb-3" >
                                 {genres
                                     ? genres.map((genre, index, array) =>
-                                        <div className="genre" key={genre.id}>{genre.name}{array.length - 1 === index ? '' : ','}</div>
+                                        <div className="genre rounded" key={genre.id}>{genre.name}{array.length - 1 === index ? '' : ','}</div>
                                     )
                                     : ''
                                 }
@@ -59,7 +59,7 @@ export const Movie = ({match}) => {
                             <div className="mb-2">Runtime: {runtime} minutes</div>
                             <p>Budget: $ {revenue} </p>
                             <div className="mb-4">{overview}</div>
-                            <button className="btn button_back btn-color mb-3" onClick={()=>setShow(!show)}>Watch trailer</button>
+                            <button className="btn button_back btn-color mb-3" onClick={()=>setShow(!show)}>Trailer</button>
                         </div>
                     </div>
 

@@ -12,7 +12,7 @@ export const Home = () => {
         <div>
             <Slider/>
             <Input/>
-            {movies.total_results === undefined
+            {movies.total_results === undefined || movies.total_results === 0
                 ? ''
                 : <div className="row d-flex justify-content-center">
                     {loading ? <Loading/> : ''}

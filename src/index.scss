@@ -5,7 +5,6 @@ $main_color:#212529;
 $white_color: #fff;
 
 //border
-
 $radius: 5px;
 
 //Шаблоны
@@ -36,17 +35,9 @@ body {
   }
 }
 
-
-
 .white_text {
   color: $white_color;
 }
-
-
-
-//.text_color {
-//  color: $bg_color;
-//}
 
 .hidden {
   display: none !important;
@@ -112,12 +103,12 @@ input[type="text"], .button_back {
 .movie img, .inside-movie {
   padding: 0;
   width: 300px;
-  height: 450px;
+  //height: 450px;
   object-fit: cover;
 }
 
 .inside-movie_margin {
-  margin: 0 10px 10px;
+  margin-left: 10px;
 }
 
 .movie_info {
@@ -157,16 +148,19 @@ input[type="text"], .button_back {
   color: red;
 }
 
-.about_movie {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: wrap;
+//.about_movie {
+//  display: flex;
+//  flex-direction: column;
+//  align-items: flex-start;
+//  flex-wrap: wrap;
+//}
+
+.text_movie {
+  font-size: 14px;
 }
 
 .genre {
   padding-right: 5px;
-  font-size: 13px;
 }
 
 .movie_card {
@@ -189,12 +183,24 @@ input[type="text"], .button_back {
   height: 100%;
 }
 
+.trailer_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.trailer_display {
+  width: 600px;
+  margin: 10px auto;
+}
+
 .display_hide {
   display: none;
 }
 
 .display_show {
   display: block;
+
 }
 
 .slider_img {
@@ -211,6 +217,10 @@ input[type="text"], .button_back {
   .carousel_height {
     height: 400px;
   }
+  //.inside-movie {
+  //  width: 300px;
+  //}
+
 }
 
 @media screen and (max-width: 800px) {
@@ -223,5 +233,44 @@ input[type="text"], .button_back {
   .carousel_height {
     height: 180px;
   }
+  .inside-movie_margin {
+    margin-left: 0;
+  }
 }
+
+.modal_window {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+
+.modal_content {
+  padding: 10px;
+  border-radius: 12px;
+  background-color: $main_color;
+  transform: scale(0.5);
+  transition: 0.4s all;
+  width: 75vw;
+
+  &.active {
+    transform: scale(1);
+  }
+
+}
+
+
 

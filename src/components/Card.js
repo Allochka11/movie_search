@@ -2,7 +2,8 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import poster from '../no_poster.jpg'
 
-const IMG_API = 'https://image.tmdb.org/t/p/original';
+const IMG_API = process.env.REACT_APP_IMG_API
+
 
 export const Card = ({movie}) => {
 

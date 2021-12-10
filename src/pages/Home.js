@@ -10,7 +10,7 @@ export const Home = () => {
 
     return (
         <div>
-            <Slider />
+            {/*<Slider />*/}
             <Input/>
             {movies.total_results === undefined || movies.total_results === 0
                 ? ''

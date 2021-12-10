@@ -4,7 +4,7 @@ import {MovieContext} from "../context/movie/movieContext";
 export const Trailer = ({idMovie}) => {
 
     const {getTrailer, trailer} = useContext(MovieContext);
-
+    // eslint-disable-next-line
     useEffect(()=>{
         getTrailer(idMovie);
     },[idMovie]);

@@ -1,4 +1,4 @@
-import React, {Fragment, useContext, useLayoutEffect, useState} from 'react';
+import React, {Fragment, useContext, useLayoutEffect, useMemo, useState} from 'react';
 import {MovieContext} from "../context/movie/movieContext";
 import poster from "../no_poster.jpg";
 import {Link} from "react-router-dom";

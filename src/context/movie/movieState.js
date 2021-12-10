@@ -12,7 +12,7 @@ import axios from "axios";
 
 
 const KEY = process.env.REACT_APP_API_KEY;
-const SEARCH = 'https://api.themoviedb.org/3/';
+const SEARCH = process.env.REACT_APP_SEARCH_MOVIE;
 
 export const MovieState = ({children}) => {
 

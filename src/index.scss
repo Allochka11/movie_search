@@ -235,7 +235,9 @@ input[type="text"], .button_back {
   }
   .inside-movie_margin {
     margin-left: 0;
+    width: 250px;
   }
+
 }
 
 .modal_window {
@@ -251,26 +253,28 @@ input[type="text"], .button_back {
   opacity: 0;
   pointer-events: none;
   transition: 0.5s;
+  overflow: hidden;
   &.active {
     opacity: 1;
     pointer-events: all;
   }
-}
+  .modal_content {
+    padding: 10px;
+    border-radius: 12px;
+    background-color: $main_color;
+    transform: scale(0.5);
+    transition: 0.4s all;
+    width: 75vw;
 
+    &.active {
+      transform: scale(1);
+    }
 
-.modal_content {
-  padding: 10px;
-  border-radius: 12px;
-  background-color: $main_color;
-  transform: scale(0.5);
-  transition: 0.4s all;
-  width: 75vw;
-
-  &.active {
-    transform: scale(1);
   }
-
 }
+
+
+
 
 
 

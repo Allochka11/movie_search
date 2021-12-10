@@ -1,4 +1,4 @@
-import React, {useContext, useLayoutEffect} from 'react';
+import React, {useContext, useEffect, useLayoutEffect} from 'react';
 import {Carousel} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {MovieContext} from "../context/movie/movieContext";
@@ -8,7 +8,18 @@ export const Slider = () => {
 
     const {getPopular} = useContext(MovieContext);
 
-    useLayoutEffect ( ()=> {
+    // if(localStorage === null) {
+    //     getPopular()
+    //     console.log('get populer')
+    // }
+    // class kd extends React.Component {
+    //     componentDidMount() {
+    //
+    //     }
+    // }
+
+
+    useEffect ( ()=> {
         getPopular();
     },[])
 

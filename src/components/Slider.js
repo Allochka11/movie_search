@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useLayoutEffect} from 'react';
 import {Carousel} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {MovieContext} from "../context/movie/movieContext";
-const IMG_API = 'https://image.tmdb.org/t/p/original';
+import {IMG_API} from "../config";
 
 export const Slider = () => {
 

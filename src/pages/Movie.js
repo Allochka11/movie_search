@@ -5,9 +5,9 @@ import {Link} from "react-router-dom";
 import {Loading} from "../components/Loading";
 import {Trailer} from "../components/Trailer";
 import {Modal} from "../components/Modal";
+import {IMG_API} from "../config";
 
 
-const IMG_API = process.env.REACT_APP_IMG_API;
 
 export const Movie = ({match}) => {
     const [modalActive, setModalActive] = useState(false);

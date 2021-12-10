@@ -9,10 +9,10 @@ import {
     SET_LOADING
 } from "../types";
 import axios from "axios";
+import {KEY,SEARCH} from "../../config";
 
 
-const KEY = process.env.REACT_APP_API_KEY;
-const SEARCH = process.env.REACT_APP_SEARCH_MOVIE;
+
 
 export const MovieState = ({children}) => {
 

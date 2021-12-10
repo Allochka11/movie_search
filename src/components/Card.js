@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import poster from '../no_poster.jpg'
-import {IMG_API} from "../config";
+
+const IMG_API = process.env.REACT_APP_IMG_API
 
 
 export const Card = ({movie}) => {

@@ -1,8 +1,9 @@
-import React, {useContext, useEffect, useLayoutEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Carousel} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {MovieContext} from "../context/movie/movieContext";
-import {IMG_API} from "../config";
+
+const IMG_API = process.env.REACT_APP_IMG_API;
 
 export const Slider = () => {
 

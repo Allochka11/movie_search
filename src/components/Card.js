@@ -26,12 +26,18 @@ export const Card = ({movie}) => {
                 <img src= {poster_path ? (IMG_API + poster_path) : poster } alt={original_title} className=" card-img-top"
             />
             <div className="card-body radius d-flex dark-theme align-items-center justify-content-between">
-                <h6 className="card-title">{original_title}</h6>
-                <span className={`bg_vote ${voteColor(vote_average)}`}>{vote_average}</span>
+                <h6 className="card-title">{original_title ? original_title : "Film's name" }</h6>
+                {vote_average ?
+                    <span className={`bg_vote ${voteColor(vote_average)}`}>{vote_average}</span>
+                    : ''
+                }
             </div>
-            <div className="overview">
-                <p>{overview ? overview : 'There is no overview yet'}</p>
-            </div>
+            {overview ?
+                <div className="overview">
+                    <p>{overview}</p>
+                </div>
+                : ''
+            }
             </Link>
         </div>
     )

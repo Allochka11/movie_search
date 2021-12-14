@@ -46,11 +46,17 @@ export const Movie = ({match}) => {
                         <div className="col">
                             <div className="d-flex align-items-start">
                                 <h2 className="title">{title ? title : ''} {year ? `(${year})` : ''}</h2>
-                                <span className={`bg_vote ${voteColor(vote_average)}`}>{vote_average ? vote_average : ''}</span>
+                                {vote_average ?
+                                    <span className={`bg_vote ${voteColor(vote_average)}`}>{vote_average}</span>
+                                    : ''
+                                }
                             </div>
 
-                            <p className="fst-italic">{tagline ? `"${tagline} "` : ''}</p>
-                            <div className="d-flex flex-wrap mb-3" >
+                            {tagline ?
+                                <q className="fst-italic mb-2">{tagline}</q> : ''
+                            }
+
+                            <div className="d-flex flex-wrap mb-2 mt-2" >
                                 {genres
                                     ? genres.map((genre, index, array) =>
                                         <div className="genre rounded" key={genre.id}>{genre.name}{array.length - 1 === index ? '' : ','}</div>
@@ -58,9 +64,19 @@ export const Movie = ({match}) => {
                                     : ''
                                 }
                             </div>
-                            <div className="mb-2">{runtime ? `Runtime: ${runtime} minutes` : '' }</div>
-                            <p>{revenue ? `Budget: ${revenue}$` : '' }</p>
-                            <div className="mb-4 card_text">{overview ? overview : ''}</div>
+                            {runtime ?
+                                <div className="mb-2">{`Runtime: ${runtime} minutes`}</div> : ''
+                            }
+                            {revenue ?
+                                <p className="mb-2">{`Budget: ${revenue}$`}</p> : ''
+                            }
+
+                            {overview ?
+                                <div className="mb-3 card_text">
+                                    <p>{overview}</p>
+                                </div>
+                                : ''
+                            }
                             <button className="btn button_back btn-color mb-3" onClick={()=> setModalActive(true)}>Trailer</button>
                         </div>
                     </div>

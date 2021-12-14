@@ -3,12 +3,14 @@ import {MovieContext} from "../context/movie/movieContext";
 
 export const Trailer = ({idMovie}) => {
 
-    const {getTrailer, trailer} = useContext(MovieContext);
+    const {getTrailer, trailer, clearSearch} = useContext(MovieContext);
     // eslint-disable-next-line
     useEffect(()=>{
-        //h
+        // clearSearch();
+
+
         getTrailer(idMovie);
-    },[idMovie]);
+    },[]);
 
     return(
         <div>

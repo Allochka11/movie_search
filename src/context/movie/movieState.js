@@ -78,15 +78,18 @@ export const MovieState = ({children}) => {
     }
 
     const getTrailer = id => {
+        setLoading(true)
 
         axios.get(
             SEARCH + `movie/${id}/videos?api_key=${KEY}&language=en-US`
         ).then(response => {
 
             const videoKeys = [];
+
             response.data.results.map((video) => {
                 return videoKeys.push(video.key)
             })
+
 
             return new Promise(resolve => {
                 dispatch({

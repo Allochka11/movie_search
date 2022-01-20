@@ -12,7 +12,7 @@ const IMG_API = process.env.REACT_APP_IMG_API;
 export const Movie = ({match}) => {
     const [modalActive, setModalActive] = useState(false);
 
-    const {getMovie, movie, loading} = useContext(MovieContext);
+    const {getMovie, movie, loading, trailer} = useContext(MovieContext);
     const idMovie = match.params.id;
 
     useLayoutEffect(() => {
@@ -77,14 +77,26 @@ export const Movie = ({match}) => {
                                 </div>
                                 : ''
                             }
-                            <button className="btn button_back btn-color mb-3" onClick={()=> setModalActive(true)}>Trailer</button>
+
+                            {trailer && trailer.length > 0 &&
+                                <button className="btn button_back btn-color mb-3" onClick={()=> setModalActive(true)}>Trailer</button>
+                            }
+
                         </div>
                     </div>
                 </div>
             </div>
-            <Modal active={modalActive} setActive={setModalActive}>
-                <Trailer idMovie={idMovie}/>
-            </Modal>
+            {idMovie ?
+                <div>
+                    {/*<button className="btn button_back btn-color mb-3" onClick={()=> setModalActive(true)}>Trailer</button>*/}
+                    <Modal active={modalActive} setActive={setModalActive}>
+                        <Trailer idMovie={idMovie}/>
+                    </Modal>
+                </div>
+
+                : 'nothing to play'
+            }
+
         </Fragment>
     )
 }

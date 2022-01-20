@@ -1,23 +1,24 @@
 import React, {useContext, useEffect} from 'react';
 import {MovieContext} from "../context/movie/movieContext";
+import {Loading} from "./Loading";
 
 export const Trailer = ({idMovie}) => {
 
-    const {getTrailer, trailer, clearSearch} = useContext(MovieContext);
+    const {getTrailer, trailer, loading} = useContext(MovieContext);
     // eslint-disable-next-line
     useEffect(()=>{
         // clearSearch();
-
-
         getTrailer(idMovie);
     },[]);
 
+
+    console.log(trailer)
+
     return(
         <div>
-
-            {trailer && !trailer.length
-                ? <div>Трейлер отсутствует!</div>
-                : <div className="video-container">
+            {loading ? <Loading/>: ''}
+            {trailer &&
+                <div className="video-container">
                     <iframe
                         width="560"
                         height="315"
